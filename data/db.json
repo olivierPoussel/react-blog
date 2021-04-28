@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam odio sapiente cum debitis veniam blanditiis ipsam impedit atque vitae, ab corporis possimus. Labore laudantium placeat voluptates. Animi repellendus sed sequi.",
+      "author": "typicode"
+    },{
+      "id": 2,
+      "title": "Test",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam odio sapiente cum debitis veniam blanditiis ipsam impedit atque vitae, ab corporis possimus. Labore laudantium placeat voluptates. Animi repellendus sed sequi.",
+      "author": "typicode"
+    },{
+      "id": 3,
+      "title": "Test 2",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam odio sapiente cum debitis veniam blanditiis ipsam impedit atque vitae, ab corporis possimus. Labore laudantium placeat voluptates. Animi repellendus sed sequi.",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": 1,
+      "email": "olivier.poussel@gmail.com",
+      "pwd": "test"
+    },
+    {
+      "email": "test@ex.com",
+      "pwd": "1234",
+      "id": 2
+    },
+    {
+      "email": "test2@ex.com",
+      "pwd": "1234",
+      "id": 3
+    },
+    {
+      "email": "test3@ex.com",
+      "pwd": "test",
+      "id": 4
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "email": "olivier.poussel@gmail.com",
+      "message": "message"
+    },
+    {
+      "email": "test@ex.com",
+      "message": "test",
+      "id": 2
+    }
+  ]
+}
