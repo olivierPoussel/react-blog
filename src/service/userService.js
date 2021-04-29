@@ -1,17 +1,14 @@
-export const USER_KEY = 'user'
+import { getInStore, removeInStore, setInStore, USER_KEY } from "./store"
+
 
 export const setUserLocalStorage = (user) => {
-    const stringData = JSON.stringify(user)
-    const localStorage = window.localStorage
-    localStorage.setItem(USER_KEY, stringData)
+    setInStore(USER_KEY ,user)
 }
 
 export const isConnected = () => {
-    
-    const localStorage = window.localStorage
-    const userString = localStorage.getItem(USER_KEY)
-    if(userString) {
-        const user = JSON.parse(userString)
+
+    const user = getInStore(USER_KEY)
+    if(user) {
         if(user.id) {
             return true
         }
@@ -21,6 +18,5 @@ export const isConnected = () => {
 }
 
 export const logout = () => {
-    const localStorage = window.localStorage
-    localStorage.removeItem(USER_KEY)
+    removeInStore(USER_KEY)
 }

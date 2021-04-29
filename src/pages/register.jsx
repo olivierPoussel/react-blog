@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import InputLabel from '../components/form/inputLabel'
+import { registerApi } from '../service/ApiService'
+import { setInStore, USER_KEY } from '../service/store'
 
 export default function Register(props) {
     console.log(props)
@@ -13,22 +15,13 @@ export default function Register(props) {
 
         setCredentials({...credentials, [name]: value})
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         console.log('submit !')
         //ajax
-        const url = 'http://localhost:3004/users'
-        const result = axios.post(url, credentials)
-        result.then(
-            (response) => {
-                console.log(response)
-                const data = response.data
-                const stringData = JSON.stringify(data)
-                const localStorage = window.localStorage
-                localStorage.setItem('user', stringData)
-                props.history.push('/')
-            }
-            )
+        const data = await registerApi(credentials)
+        setInStore(USER_KEY,data)
+        props.history.push('/')
     }
     return (
         <form onSubmit={handleSubmit}>

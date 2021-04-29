@@ -11,6 +11,7 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Home from './pages/home';
 import Login from './pages/login';
+import Post from './pages/post';
 import Register from './pages/register';
 import { isConnected, logout } from './service/userService';
 
@@ -44,6 +45,7 @@ function App() {
                 {/* <Register /> */}
               </Route>
               <Route path="/contact" component={Contact}/>
+              <Route path="/articles/:id" component={Post}/>
               <Route path="/">
                 <Home />
               </Route>

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../App'
 import InputLabel from '../components/form/inputLabel'
+import { loginApi } from '../service/ApiService'
 import { formHandleChange } from "../service/formService"
 import { setUserLocalStorage } from '../service/userService'
 
@@ -14,26 +15,22 @@ export default function Login(props) {
         formHandleChange(event, login, setLogin)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        const url = `http://localhost:3004/users?email=${login.email}&pwd=${login.pwd}`
-        axios.get(url)
-            .then((response) => {
-                console.log(response);
-                const data = response.data
-                if (data.length > 0) {
-                    //enregister le user dans le localStorage
-                    setUserLocalStorage(data[0])
-                    seterror(false)
-                    context.setConnected(true)
-                    props.history.push('/')
-                } else {
-                    //error
-                    seterror(true)
-                    context.setConnected(false)
-                }
-            })
-            .catch((error) => console.log(error))
+
+        const data = await loginApi(login.email, login.pwd)
+
+        if (data.length > 0) {
+            //enregister le user dans le localStorage
+            setUserLocalStorage(data[0])
+            seterror(false)
+            context.setConnected(true)
+            props.history.push('/')
+        } else {
+            //error
+            seterror(true)
+            context.setConnected(false)
+        }
     }
     return (
         <div>

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import InputLabel from '../components/form/inputLabel'
+import { contactApi } from '../service/ApiService'
 
 export default function Contact(props) {
     const [contact, setcontact] = useState({email: '', message: ''})
@@ -11,18 +12,15 @@ export default function Contact(props) {
 
         setcontact({...contact, [name]: value})
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         console.log('contact !')
         //ajax
-        const url = 'http://localhost:3004/contacts'
-        const result = axios.post(url, contact)
-        result.then(
-            (response) => {
-                console.log(response)
-                props.history.push('/')
-            }
-            )
+        const result = await contactApi(contact)
+        // console.log(result, typeof result)
+        if(result && result.data) {
+            props.history.push('/')
+        }
     }
     return (
         <form onSubmit={handleSubmit} className="d-flex flex-column justify-content-center flex-wrap my-5">
