@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { isConnected, logout } from '../../service/userService'
+import { logout } from '../../service/userService'
 import MenuLi from './menuLi'
 import {AuthContext} from '../../App'
 
@@ -34,7 +34,7 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="navbarColor03">
                 <ul className="navbar-nav mr-auto">
                     {menu.map((linkData, index) => <MenuLi key={index} nom={linkData.nom} url={linkData.url} />)}
-                    {isConnected() && (<li className="nav-item"><a className="nav-link" href="#" onClick={onLogout}>Déconnexion</a></li>)}
+                    {context.isConnected && (<li className="nav-item"><a className="nav-link" href="#" onClick={onLogout}>Déconnexion</a></li>)}
                 </ul>
             </div>
         </nav>

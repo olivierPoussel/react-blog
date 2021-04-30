@@ -19,10 +19,11 @@ export default function Login(props) {
         event.preventDefault()
 
         const data = await loginApi(login.email, login.pwd)
-
-        if (data.length > 0) {
+        console.log(data)
+        // if (data.length > 0) {
+        if (data) {
             //enregister le user dans le localStorage
-            setUserLocalStorage(data[0])
+            setUserLocalStorage(data)
             seterror(false)
             context.setConnected(true)
             props.history.push('/')

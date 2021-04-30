@@ -1,8 +1,10 @@
-import { getInStore, removeInStore, setInStore, USER_KEY } from "./store"
+import axios from "axios"
+import { getInStore, JWT, removeInStore, setInStore, USER_KEY } from "./store"
 
 
-export const setUserLocalStorage = (user) => {
-    setInStore(USER_KEY ,user)
+export const setUserLocalStorage = (data) => {
+    setInStore(USER_KEY ,data.user)
+    setInStore(JWT ,data.jwt)
 }
 
 export const isConnected = () => {
@@ -10,6 +12,8 @@ export const isConnected = () => {
     const user = getInStore(USER_KEY)
     if(user) {
         if(user.id) {
+            axios.defaults.headers['Authorization'] = 'Bearer ' + getInStore(JWT)
+
             return true
         }
     }
@@ -19,4 +23,5 @@ export const isConnected = () => {
 
 export const logout = () => {
     removeInStore(USER_KEY)
+    removeInStore(JWT)
 }

@@ -20,6 +20,7 @@ export default function Register(props) {
         console.log('submit !')
         //ajax
         const data = await registerApi(credentials)
+        console.log(data);
         setInStore(USER_KEY,data)
         props.history.push('/')
     }
